@@ -7,6 +7,8 @@ class NavBar extends Component {
       <div>
         <NavLink to="/">     Home|</NavLink>
         <NavLink to="/login">Login|</NavLink>
+        <NavLink to="/reser">Reservar|</NavLink>
+
 
       </div>
     );
