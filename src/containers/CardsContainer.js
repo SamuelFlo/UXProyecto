@@ -6,8 +6,8 @@ class CardsContainer extends Component {
     render() {
       console.log(items);
       let itemList = items.map((item) => {
-        return   <Cards title={item.title} 
-            price={item.price} 
+        return   <Cards title={item.title}
+            price={item.price}
             pictureUrl={item.pictureUrl}
           />
       })
@@ -20,5 +20,5 @@ class CardsContainer extends Component {
         );
     }
   }
-  
+
   export default CardsContainer;

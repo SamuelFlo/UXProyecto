@@ -8,7 +8,7 @@ class Cart extends Component {
                 <br />
                 <div class="ui teal one item inverted menu">
                     <div className="item">
-                        <i className="Big Cart Icon">    
+                        <i className="Big Cart Icon">
                         </i>
                     </div>
                 </div>
