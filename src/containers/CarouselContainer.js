@@ -8,5 +8,5 @@ class CarouselContainer extends Component {
       );
     }
   }
-  
+
   export default CarouselContainer;

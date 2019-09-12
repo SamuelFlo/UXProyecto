@@ -1,8 +1,9 @@
-import React from "react";
-import "./App.scss";
-import { Login, Registro } from "./components/login/index";
+import React, { Component } from 'react';
+import './components/App/App.scss';
+import SignInPage from './components/SignIn';
+import SignUpPage from './components/SignUp';
 
-class Log extends React.Component {
+class Log extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,10 +37,10 @@ class Log extends React.Component {
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
+              <SignInPage containerRef={ref => (this.current = ref)} />
             )}
             {!isLogginActive && (
-              <Registro containerRef={ref => (this.current = ref)} />
+              <SignUpPage containerRef={ref => (this.current = ref)} />
             )}
           </div>
           <RightSide

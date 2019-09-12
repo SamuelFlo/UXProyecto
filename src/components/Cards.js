@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
+import * as ROUTES from '../constants/routes';
+import { NavLink } from 'react-router-dom';
 
 class Cards extends Component {
   render() {
@@ -17,10 +19,8 @@ class Cards extends Component {
           <div class="extra content">
             <span class="center floated">
               <div class="ui vertical animated button" tabindex="0">
-                <div class="hidden content">
-                  <i class="cart plus icon" />
-                </div>
-                <div class="visible content">Reservar</div>
+              
+                <NavLink to={ROUTES.RESERVAR}>     Reservar </NavLink>
               </div>
             </span>
           </div>
