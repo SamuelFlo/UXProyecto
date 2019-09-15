@@ -24,6 +24,7 @@ class Firebase {
   users = () => this.db.ref('users');
   reservar = uid => this.db.ref(`reservas/${uid}`);
   reservas = () => this.db.ref('reservas');
+
 }
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
