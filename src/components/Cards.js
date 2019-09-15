@@ -7,27 +7,27 @@ import "react-notification-alert/dist/animate.css";
 
 var options = {};
 options = {
-  place: 'tl',
+  place: 'tr',
   message: (
       <div>
          <div>
               <b>Promociones</b> 
           </div>
           <div>
-             
+             1.Martes y Jueves 25% de descuento en las reservas
           </div>
           <div>
-              Welcome to <b>Now UI Dashboard React</b> - a beautiful freebie for every web developer.
+              2.Miercoles botellon con agua gratis por equipo 
           </div>
           <div>
-              Welcome to <b>Now UI Dashboard React</b> - a beautiful freebie for every web developer.
+              3. Domingo prestamo de chalecos y balones gratis
           </div>
 
       </div>
   ),
-  type: "danger",
+  type: "info",
   icon: "now-ui-icons ui-1_bell-53",
-  autoDismiss: 7
+  autoDismiss: 15
 }
 
 class Cards extends Component {
@@ -59,8 +59,7 @@ class Cards extends Component {
               </div>
               <NotificationAlert ref="notify" />
               <button onClick={() => this.myFunc()}>Promociones</button>
-              
-              
+             
       
               
               

@@ -132,12 +132,13 @@ class SignInFormBase extends Component {
         {this.state.isSignedIn ? (
           <BrowserRouter>
 
-
+          
           </BrowserRouter>
         ):(
             <StyledFirebaseAuth
             uiConfig={this.uiConfig}
             firebaseAuth={firebase.auth()}/>
+            
 
         )}
         <div className="footer">
@@ -150,7 +151,9 @@ class SignInFormBase extends Component {
         
         
         </div>
+        <NavLink to={ROUTES.LANDING}/>
       </form>
+      
       
     );
   }
