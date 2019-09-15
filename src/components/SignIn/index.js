@@ -14,6 +14,7 @@ import { BrowserRouter,Route,Link } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
+
 import { GoogleLogin } from 'react-google-login';
 import {
     Collapse,
@@ -28,11 +29,6 @@ import {
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 
-
-
-
-
-
 const SignInPage = () => (
   <div>
     <SignInForm />
@@ -44,7 +40,12 @@ const INITIAL_STATE = {
   error: null,
 };
 
+
 class SignInFormBase extends Component {
+ 
+  
+
+
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -145,8 +146,12 @@ class SignInFormBase extends Component {
         </button>
         </div>
         {error && <p>{error.message}</p>}
+        
+        
+        
         </div>
       </form>
+      
     );
   }
 }

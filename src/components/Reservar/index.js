@@ -18,6 +18,7 @@ const INITIAL_STATE = {
   hora: '',
 };
 class Reservar extends Component {
+  
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -65,11 +66,17 @@ class Reservar extends Component {
       hora
     } = this.state;
     return (
+     
+      
       <form onSubmit={this.onSubmit}>
+      
       <div className="base-container" ref={this.props.containerRef}>
+      
         <div className="header">Reservar</div>
         <div className="content">
+        
           <div className="form">
+         
 
             <div className="form-group">
               <label htmlFor="celular">Celular</label>
@@ -113,6 +120,7 @@ class Reservar extends Component {
       </div>
 
       </form>
+      
     );
   }
 }

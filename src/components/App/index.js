@@ -15,6 +15,10 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
+
+
+
+
 const App = () => (
   <Router>
     <div>
