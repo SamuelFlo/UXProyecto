@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import * as ROUTES from '../../constants/routes';
 
 
@@ -14,31 +15,43 @@ const ReservarPage = () => (
 const INITIAL_STATE = {
   celular: '',
   hora: '',
-  cancha:''
 };
 class Reservar extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+    dropdownOpen: false
+  };
   }
+  toggle() {
+   this.setState(prevState => ({
+     dropdownOpen: !prevState.dropdownOpen
+   }));
+ }
   onSubmit = event => {
-    const { celular, hora,cancha } = this.state;
+    const { celular, hora } = this.state;
+    withFirebase.database().ref('users/').set({
+    celular: celular,
+    hora: hora
+  });
     this.props.firebase
       .then(authUser => {
+
         return this.props.firebase
-          .reservar(authUser.user.uid)
+
+          .reservar(authUser.reservar.uid)
           .set({
             celular,
             hora,
-            cancha,
           });
       })
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.LANDING);
+      //  this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
-        this.setState({ error });
       });
     event.preventDefault();
   }
@@ -48,8 +61,7 @@ class Reservar extends Component {
   render() {
     const {
       celular,
-      hora,
-      cancha
+      hora
     } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
@@ -78,28 +90,18 @@ class Reservar extends Component {
                 placeholder="Hora"
                 />
             </div>
-
-
-            <div class="input-group">
-              <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Seleccionar cancha
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Don Futbol</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Futeca</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Los amigos</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Soccer City</a></li>
-                </ul>
-              </div>
-              <input
-                name="cancha"
-                value={cancha}
-                onChange={this.onChange}
-                type="text"
-                placeholder="Cancha"
-              />
-            </div>
-
+            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+          Seleccionar Canchas
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem header>Canchas</DropdownItem>
+          <DropdownItem>Los Amigos</DropdownItem>
+          <DropdownItem>Don Futbol</DropdownItem>
+          <DropdownItem>Futeca</DropdownItem>
+          <DropdownItem>Soccer City</DropdownItem>
+        </DropdownMenu>
+        </Dropdown>
         </div>
         <div className="footer">
           <button type="submit" className="btn">
