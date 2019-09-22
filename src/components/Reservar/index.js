@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { Link, withRouter } from 'react-router-dom';
-
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -13,49 +12,42 @@ const ReservarPage = () => (
     <Reserva />
   </div>
 );
+const value= {}
 const INITIAL_STATE = {
-  celular: '',
-  hora: '',
+  celular: ''
 };
 class Reservar extends Component {
-  
   constructor(props) {
     super(props);
+    this.state = {value: "Don Futbol"};
+    this.state={value: "1:00"};
     this.state = { ...INITIAL_STATE };
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-    dropdownOpen: false
-  };
+  this.handleChange= this.handleChange.bind(this);
+
+  this.handleSubmit= this.handleSubmit.bind(this);
   }
-  toggle() {
-   this.setState(prevState => ({
-     dropdownOpen: !prevState.dropdownOpen
-   }));
- }
+  handleChange(event){
+    this.setState({value: event.target.value});
+  }
+  handleSubmit(event){
+    event.preventDefault();
+  }
+
   onSubmit = event => {
-    const { celular, hora } = this.state;
-    withFirebase.database().ref('users/').set({
-    celular: celular,
-    hora: hora
-  });
+      event.preventDefault();
+
+    const { celular, hora, cancha } = this.state;
     this.props.firebase
-      .then(authUser => {
-
-        return this.props.firebase
-
-          .reservar(authUser.reservar.uid)
+          .reservar(this.props.firebase.auth.currentUser.uid)
           .set({
             celular,
             hora,
+            cancha
+          }).then(x => {
+
+            this.props.history.push(ROUTES.LANDING);
           });
-      })
-      .then(authUser => {
-        this.setState({ ...INITIAL_STATE });
-      //  this.props.history.push(ROUTES.LANDING);
-      })
-      .catch(error => {
-      });
-    event.preventDefault();
+
   }
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -63,20 +55,15 @@ class Reservar extends Component {
   render() {
     const {
       celular,
-      hora
+      hora,
+      cancha
     } = this.state;
     return (
-     
-      
       <form onSubmit={this.onSubmit}>
-      
       <div className="base-container" ref={this.props.containerRef}>
-      
         <div className="header">Reservar</div>
         <div className="content">
-        
           <div className="form">
-         
 
             <div className="form-group">
               <label htmlFor="celular">Celular</label>
@@ -88,28 +75,24 @@ class Reservar extends Component {
                 placeholder="Numero de Celular"
                 />
             </div>
-            <div className="form-group">
-              <label htmlFor="hora">Hora</label>
-              <input
-                name="hora"
-                value={hora}
-                onChange={this.onChange}
-                type="text"
-                placeholder="Hora"
-                />
+            <div>
+            <label>Seleccionar Hora</label>
+            <select name="hora" onChange={this.onChange}>
+              <option value="1:00">1:00</option>
+              <option value="2:00">2:00</option>
+              <option value="3:00">3:00 </option>
+              <option value="4:00">4:00 </option>
+            </select>
             </div>
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-          Seleccionar Canchas
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem header>Canchas</DropdownItem>
-          <DropdownItem>Los Amigos</DropdownItem>
-          <DropdownItem>Don Futbol</DropdownItem>
-          <DropdownItem>Futeca</DropdownItem>
-          <DropdownItem>Soccer City</DropdownItem>
-        </DropdownMenu>
-        </Dropdown>
+        </div>
+        <div>
+        <label>Seleccionar Cancha</label>
+        <select name="cancha" onChange={this.onChange}>
+          <option value="Don Futbol">Don Futbol </option>
+          <option value="Soccer City">Soccer City </option>
+          <option value="Los Amigos">Los Amigos </option>
+          <option value="Futeca">Futeca </option>
+        </select>
         </div>
         <div className="footer">
           <button type="submit" className="btn">
@@ -118,9 +101,7 @@ class Reservar extends Component {
         </div>
       </div>
       </div>
-
       </form>
-      
     );
   }
 }
