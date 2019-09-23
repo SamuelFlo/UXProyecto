@@ -17,7 +17,7 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import NotificationAlert from 'react-notification-alert';
 import "react-notification-alert/dist/animate.css";
-
+ 
 var options = {};
 options = {
   place: 'tr',
@@ -27,13 +27,23 @@ options = {
               <b>Promociones</b>
           </div>
           <div>
-             1.Martes y Jueves 25% de descuento en las reservas
+             1. Martes y Jueves 25% de descuento en las reservas
           </div>
-          <div>
-              2.Miercoles botellon con agua gratis por equipo
-          </div>
-          <div>
-              3. Domingo prestamo de chalecos y balones gratis
+          
+
+      </div>
+  ),
+  type: "info",
+  icon: "now-ui-icons ui-1_bell-53",
+  autoDismiss: 15
+}
+var options2 = {};
+options2 = {
+  place: 'tr',
+  message: (
+      <div>
+         <div>
+              2. Miercoles botellon con agua gratis por equipo
           </div>
 
       </div>
@@ -42,15 +52,42 @@ options = {
   icon: "now-ui-icons ui-1_bell-53",
   autoDismiss: 15
 }
+var options3 = {};
+options3 = {
+  place: 'tr',
+  message: (
+      <div>
+        <div>
+              3. Domingo prestamo de chalecos y balones gratis
+          </div>
+         
+
+      </div>
+  ),
+  type: "info",
+  icon: "now-ui-icons ui-1_bell-53",
+  autoDismiss: 15
+}
+
+
 class App extends Component {
   constructor(props){
     super(props)
-    setInterval(()=>{this.myFunc()},1000*5);
+    setInterval(()=>{this.myFunc()},1000*30);
+    setInterval(()=>{this.myFunc2()},1000*30);
+    setInterval(()=>{this.myFunc3()},1000*30);
   }
 
   myFunc(){
     this.refs.notify.notificationAlert(options);
 }
+myFunc2(){
+  this.refs.notify.notificationAlert(options2);
+}
+myFunc3(){
+  this.refs.notify.notificationAlert(options3);
+}
+
   render() {
     return (
       <Router>

@@ -7,6 +7,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import * as ROUTES from '../../constants/routes';
 
 
+
 const ReservarPage = () => (
   <div>
     <Reserva />
@@ -25,7 +26,13 @@ class Reservar extends Component {
   this.handleChange= this.handleChange.bind(this);
 
   this.handleSubmit= this.handleSubmit.bind(this);
+
+  
   }
+
+  
+
+
   handleChange(event){
     this.setState({value: event.target.value});
   }

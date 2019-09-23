@@ -30,7 +30,7 @@ class Cards extends Component {
                 <NavLink to={ROUTES.RESERVAR}>     Reservar </NavLink>
 
               </div>
-              <button onClick={() => this.myFunc()}>Promociones</button>
+              
 
 
 
