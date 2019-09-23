@@ -7,39 +7,23 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import * as ROUTES from '../../constants/routes';
 
 
-
 const ReservarPage = () => (
   <div>
     <Reserva />
   </div>
 );
-const value= {}
 const INITIAL_STATE = {
-  celular: ''
+  celular: '',
+  hora: null,
+  cancha: null
+
 };
 class Reservar extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: "Don Futbol"};
-    this.state={value: "1:00"};
     this.state = { ...INITIAL_STATE };
-  this.handleChange= this.handleChange.bind(this);
 
-  this.handleSubmit= this.handleSubmit.bind(this);
-
-  
   }
-
-  
-
-
-  handleChange(event){
-    this.setState({value: event.target.value});
-  }
-  handleSubmit(event){
-    event.preventDefault();
-  }
-
   onSubmit = event => {
       event.preventDefault();
 
@@ -85,20 +69,20 @@ class Reservar extends Component {
             <div>
             <label>Seleccionar Hora</label>
             <select name="hora" onChange={this.onChange}>
-              <option value="1:00">1:00</option>
-              <option value="2:00">2:00</option>
-              <option value="3:00">3:00 </option>
-              <option value="4:00">4:00 </option>
+              <option value={hora}>1:00</option>
+              <option value={hora}>2:00</option>
+              <option value={hora}>3:00 </option>
+              <option value={hora}>4:00 </option>
             </select>
             </div>
         </div>
         <div>
         <label>Seleccionar Cancha</label>
         <select name="cancha" onChange={this.onChange}>
-          <option value="Don Futbol">Don Futbol </option>
-          <option value="Soccer City">Soccer City </option>
-          <option value="Los Amigos">Los Amigos </option>
-          <option value="Futeca">Futeca </option>
+          <option value={cancha}>Don Futbol </option>
+          <option value={cancha}>Soccer City </option>
+          <option value={cancha}>Los Amigos </option>
+          <option value={cancha}>Futeca </option>
         </select>
         </div>
         <div className="footer">
