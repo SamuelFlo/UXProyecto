@@ -151,7 +151,7 @@ class SignInFormBase extends Component {
         
         
         </div>
-        <NavLink to={ROUTES.LANDING}/>
+        
       </form>
       
       
