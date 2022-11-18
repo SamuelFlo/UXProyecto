@@ -19,7 +19,7 @@
     "react-responsive-carousel": "^3.1.50",
     "react-router-dom": "^5.0.1",
     "react-s-alert": "^1.4.1",
-    "react-scripts": "3.1.1",
+    "react-scripts": "5.0.1",
     "reactstrap": "^8.0.1",
     "recompose": "^0.30.0",
     "semantic-ui": "^2.4.2",
